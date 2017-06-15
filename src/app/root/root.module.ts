@@ -4,6 +4,7 @@ import { RootRoutingModule } from './root-routing.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { UnknownComponent } from './unknown/unknown.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
@@ -11,8 +12,9 @@ import { UnknownComponent } from './unknown/unknown.component';
     RootRoutingModule
   ],
   exports: [
-    RootRoutingModule
+    RootRoutingModule,
+    HeaderComponent
   ],
-  declarations: [HomeComponent, UnknownComponent]
+  declarations: [HomeComponent, UnknownComponent, HeaderComponent]
 })
 export class RootModule { }
