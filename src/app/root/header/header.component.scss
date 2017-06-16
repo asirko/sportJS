@@ -1,0 +1,40 @@
+@import "../../../styles/shared";
+
+.header {
+  position: fixed;
+  top: 0;
+  height: $sp-header-height;
+  width: 100%;
+  padding: 3px;
+  background-color: $sp-color-main;
+  box-shadow: 0 0 5px 1px #999;
+}
+
+menu {
+
+  menuitem + menuitem {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      left: -3px;
+      width: 1px;
+      height: $sp-header-height - 6px;
+      content: '';
+      background-color: $sp-color-secondary;
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 0 20px;
+    line-height: $sp-header-height - 6px;
+    color: $sp-color-secondary;
+    text-decoration: none;
+    outline: none;
+
+    &.active {
+      background-color: $sp-color-warning;
+    }
+  }
+}

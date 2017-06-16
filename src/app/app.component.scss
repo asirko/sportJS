@@ -1,0 +1,11 @@
+@import "../styles/shared";
+
+:host {
+  display: block;
+}
+
+.content {
+  height: calc(100vh - #{$sp-header-height});
+  margin-top: $sp-header-height;
+  padding: 10px;
+}
