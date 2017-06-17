@@ -1,3 +1,4 @@
-<p>
-  programs works!
-</p>
+<div *ngFor="let program of programs$ | async">
+  {{ program.name }}
+  {{ program.description }}
+</div>
