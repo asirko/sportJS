@@ -1,0 +1,16 @@
+$sp-font-timeburnernormal: 'timeburnernormal';
+$sp-font-timeburnerbold: 'timeburnerbold';
+
+@font-face {
+  font-family: $sp-font-timeburnernormal;
+  src: url('/assets/fonts/timeburnernormal.woff2') format('woff2'),
+       url('/assets/fonts/timeburnernormal.woff') format('woff'),
+       url('/assets/fonts/timeburnernormal.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $sp-font-timeburnerbold;
+  src: url('/assets/fonts/timeburnerbold.woff2') format('woff2'),
+       url('/assets/fonts/timeburnerbold.woff') format('woff'),
+       url('/assets/fonts/timeburnerbold.ttf') format('truetype');
+}
