@@ -1,0 +1,28 @@
+@import "shared";
+
+.form-field {
+  width: 340px;
+  margin: 10px 0;
+
+  label {
+    display: block;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid $sp-color-main;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      padding: 9px 19px;
+      border-width: 2px;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}

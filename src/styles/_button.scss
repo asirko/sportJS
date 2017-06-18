@@ -7,8 +7,18 @@
   color: $sp-color-secondary;
   background-color: $sp-color-main;
   border-radius: 5px;
-  transition: 0.2s;
+  transition: .2s;
   cursor: pointer;
+
+  &.sp-btn-is-secondary {
+    color: $sp-color-main;
+    border-color: $sp-color-secondary;
+    background-color: $sp-color-secondary;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
 
   &:hover {
     color: $sp-color-main;
