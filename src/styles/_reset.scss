@@ -1,5 +1,13 @@
+@import "shared";
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body,
+button {
+  font-size: 18px;
+  font-family: $sp-font-timeburnernormal, sans-serif;
 }

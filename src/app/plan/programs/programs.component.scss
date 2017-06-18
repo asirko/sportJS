@@ -1,0 +1,26 @@
+@import "../../../styles/shared";
+
+.programs-header {
+  display: flex;
+  padding: 10px;
+  margin: 10px 10px 20px;
+  background-color: $sp-color-secondary;
+  border-radius: 5px;
+  align-items: center;
+
+  .programs-header-description {
+    flex-grow: 1;
+  }
+}
+
+.prog-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: $sp-color-main;
+}
+
+.prog-content {
+  padding-top: 10px;
+  border-top: 1px solid $sp-color-main;
+  margin-top: 10px;
+}

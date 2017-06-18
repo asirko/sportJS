@@ -1,4 +1,21 @@
-<div *ngFor="let program of programs$ | async">
-  {{ program.name }}
-  {{ program.description }}
+
+<div class="programs-header">
+  <span class="programs-header-description">
+    Les programmes d'entrainement regroupent plusieurs exercices à effectuer sur une scéance.
+  </span>
+  <div>
+    <button class="sp-btn">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+      Créer un programme
+    </button>
+  </div>
+</div>
+
+<div *ngFor="let program of programs$ | async" class="card">
+  <div class="prog-title">
+    {{ program.name }}
+  </div>
+  <div class="prog-content">
+    {{ program.description }}
+  </div>
 </div>

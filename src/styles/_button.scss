@@ -1,0 +1,21 @@
+@import "shared";
+
+.sp-btn {
+  padding: 10px 20px;
+  border: 1px solid $sp-color-main;
+  margin-left: 20px;
+  color: $sp-color-secondary;
+  background-color: $sp-color-main;
+  border-radius: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: $sp-color-main;
+    background-color: $sp-color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
