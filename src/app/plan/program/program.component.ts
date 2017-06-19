@@ -24,7 +24,7 @@ export class ProgramComponent implements OnInit {
 
   private initForm(): void {
     this.formProgram = this.fb.group({
-      name: [''],
+      name: ['', Validators.required],
       description: ['']
     });
 

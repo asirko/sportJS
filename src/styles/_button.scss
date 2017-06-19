@@ -1,6 +1,7 @@
 @import "shared";
 
 .sp-btn {
+  display: inline-block;
   padding: 10px 20px;
   border: 1px solid $sp-color-main;
   margin-left: 20px;

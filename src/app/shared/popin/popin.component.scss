@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 150px 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popin {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
