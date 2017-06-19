@@ -13,13 +13,46 @@
   }
 }
 
-.prog-title {
+.prog {
+  display: flex;
+}
+
+.prog-main {
+  flex-grow: 1;
+}
+
+
+.prog-actions {
+
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+
+
+  & > * {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: $sp-color-main;
+    cursor: pointer;
+    transition: 0.25s;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.prog-main-title {
   font-size: 2rem;
   font-weight: bold;
   color: $sp-color-main;
 }
 
-.prog-content {
+.prog-main-content {
   padding-top: 10px;
   border-top: 1px solid $sp-color-main;
   margin-top: 10px;

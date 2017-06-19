@@ -1,16 +1,31 @@
 'use strict';
 
+var programs = require('./mockValues').programs;
+
 // Get list of contacts
 exports.get = function(req, res) {
-  res.json([
-    {
-      name: 'test',
-      description: 'une description'
-    }, {
-      name: 'test2',
-      description: 'une description un peu plus longue parce que je ne sais pas comment rends un paragraphe de description. ' +
-      'Sauf que je suis à cours d\'inspiration, je resterai donc à divaguer sur un bout de texte qui ne rime à rien ' +
-      'et surtout pas à une description ! Mais bon, ça le fera.'
-    }
-  ]);
+  res.json(programs);
+};
+
+// add a new program to the list
+exports.create = function(req, res) {
+  programs.push(req.body);
+  res.sendStatus(200);
+};
+
+// change an existing program into the list
+exports.getSingle = function(req, res) {
+  res.send(programs[req.params.id]);
+};
+
+// change an existing program into the list
+exports.post = function(req, res) {
+  programs[req.params.id] = req.body;
+  res.sendStatus(200);
+};
+
+// delete a program into the list
+exports.delete = function(req, res) {
+  programs.splice(req.params.id, 1);
+  res.sendStatus(200);
 };

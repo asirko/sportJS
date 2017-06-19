@@ -34,6 +34,7 @@
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "2.5.45",
     "@types/node": "~6.0.60",
+    "body-parser": "^1.17.2",
     "codelyzer": "~3.0.1",
     "concurrently": "^3.4.0",
     "express": "^4.15.3",

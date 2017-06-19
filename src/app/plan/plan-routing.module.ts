@@ -9,6 +9,9 @@ const routes: Routes = [{
   }, {
     path: 'detail',
     component: ProgramComponent
+  }, {
+    path: 'detail/:id',
+    component: ProgramComponent
   }
 ];
 

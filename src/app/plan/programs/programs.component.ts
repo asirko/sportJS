@@ -19,4 +19,9 @@ export class ProgramsComponent implements OnInit {
     this.programs$ = this.programService.findAll();
   }
 
+  deleteProgram(index: number): void {
+    this.programService.deleteProgram(index);
+    this.programs$ = this.programService.findAll();
+  }
+
 }

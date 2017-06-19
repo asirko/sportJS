@@ -11,11 +11,17 @@
   </div>
 </div>
 
-<div *ngFor="let program of programs$ | async" class="card">
-  <div class="prog-title">
-    {{ program.name }}
+<div *ngFor="let program of programs$ | async; let i = index" class="card prog">
+  <div class="prog-main">
+    <div class="prog-main-title">
+      {{ program.name }}
+    </div>
+    <div class="prog-main-content">
+      {{ program.description }}
+    </div>
   </div>
-  <div class="prog-content">
-    {{ program.description }}
+  <div class="prog-actions">
+    <i class="fa fa-pencil" aria-hidden="true" [routerLink]="['detail', i]"></i>
+    <i class="fa fa-trash text-danger" aria-hidden="true" (click)="deleteProgram(i)"></i>
   </div>
 </div>

@@ -25,4 +25,8 @@
   textarea {
     resize: vertical;
   }
+
+  &.form-field-is-fullwidth {
+    width: 100%;
+  }
 }
