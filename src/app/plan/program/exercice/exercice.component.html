@@ -1,5 +1,78 @@
 <sp-popin>
-  <p>
-    exercice works!
-  </p>
+  <form [formGroup]="exerciceForm" novalidate>
+
+    <h1>Contruire l'exercice à ajouter au programme</h1>
+
+    <div class="form-switch" (click)="resetForm()">
+      <div class="value">
+        <input type="radio" id="lesson" formControlName="category" value="LESSON">
+        <label for="lesson">Cours</label>
+      </div>
+      <div class="value">
+        <input type="radio" id="cardio" formControlName="category" value="CARDIO_TRAINING">
+        <label for="cardio">Cardio</label>
+      </div>
+      <div class="value">
+        <input type="radio" id="reinforcement" formControlName="category" value="REINFORCEMENT">
+        <label for="reinforcement">Renforcement</label>
+      </div>
+    </div>
+
+    <div *ngIf="exerciceForm.value.category" class="exercice-info">
+
+      <div class="form-field">
+        <label for="type">Type {{ exerciceForm.value.category === 'REINFORCEMENT' ? 'de machine' : 'd\'exercice' }}</label>
+        <input type="text" id="type" formControlName="type" list="exerciceTypes">
+        <datalist id="exerciceTypes">
+          <option [value]="type" *ngFor="let type of exerciceTypes">
+        </datalist>
+      </div>
+
+      <div class="form-row" *ngIf="exerciceForm.value.category !== 'REINFORCEMENT'">
+        <div class="form-field"
+             [ngClass]="{'form-field-is-extrasmall': exerciceForm.value.category === 'CARDIO_TRAINING'}">
+          <label for="duration">Durée</label>
+          <input type="text" id="duration" formControlName="duration">
+        </div>
+
+        <div class="form-field form-field-is-small" *ngIf="exerciceForm.value.category === 'CARDIO_TRAINING'">
+          <label for="speed">Vitesse</label>
+          <input type="text" id="speed" formControlName="speed">
+        </div>
+      </div>
+
+      <div class="form-row" *ngIf="exerciceForm.value.category === 'REINFORCEMENT'">
+        <div class="form-field form-field-is-extrasmall">
+          <label for="weigth">Poids</label>
+          <input type="text" id="weigth" formControlName="weigth">
+        </div>
+
+        <div class="form-field form-field-is-extrasmall">
+          <label for="nbRepetion">Répétitions</label>
+          <input type="text" id="nbRepetion" formControlName="nbRepetion">
+        </div>
+
+        <div class="form-field form-field-is-extrasmall">
+          <label for="nbMouvement">Mouvements</label>
+          <input type="text" id="nbMouvement" formControlName="nbMouvement">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="comment">Commentaire</label>
+      <textarea rows="4" id="comment" formControlName="comment"></textarea>
+    </div>
+  </form>
+
+  <div class="actions">
+    <div class="sp-btn" (click)="addExercice()"
+         [ngClass]="{'disable': exerciceForm.invalid}"
+         [title]="getTitle()">
+      Ajouter l'exercice
+    </div>
+    <div class="sp-btn sp-btn-is-secondary" (click)="cancel()">
+      Annuler
+    </div>
+  </div>
 </sp-popin>

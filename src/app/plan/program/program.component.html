@@ -14,18 +14,35 @@
   <div class="exercices">
     <div class="exercices-title">
       Exercices de ce programme
-      <span class="sp-btn">
+      <span class="sp-btn" (click)="openExerciceModal()">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Ajouter un exercice
       </span>
     </div>
-    <div class="exercice"></div>
 
-    <sp-exercice></sp-exercice>
+    <table>
+      <tr class="exercice" *ngFor="let exercice of exercices">
+        <td>
+          <i class="fi flaticon-people" aria-hidden="true"
+             [ngClass]="{'flaticon-people': exercice.category === 'LESSON',
+                     'flaticon-man-cycling': exercice.category === 'CARDIO_TRAINING',
+                     'flaticon-weightlifting': exercice.category === 'REINFORCEMENT' }"></i>
+        </td>
+        <td>{{ exercice.type }}</td>
+        <td>
+          {{ exercice.duration }}
+        </td>
+      </tr>
+    </table>
+
+    <sp-exercice *ngIf="isExercicePopinOpen" (exercice$)="addExercice($event)"></sp-exercice>
   </div>
 </form>
 
 <div class="actions">
-  <button class="sp-btn" (click)="save()">Enregistrer</button>
-  <button class="sp-btn sp-btn-is-secondary">Quitter sans sauvegarder</button>
+  <button class="sp-btn"
+          [ngClass]="{'disable': formProgram.invalid}"
+          (click)="save()"
+          [title]="getTitle()">Enregistrer</button>
+  <button class="sp-btn sp-btn-is-secondary" (click)="cancel()">Revenir à la liste</button>
 </div>

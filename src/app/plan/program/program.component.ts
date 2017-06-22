@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProgramService } from '../program.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Exercice } from './exercice/exercice';
+import { Program } from '../program';
+import { FormUtils } from '../../shared/utils/form-utils';
+
+const errorMessage = {
+  nameRequired: 'le nom du programme est obligatoire'
+};
 
 @Component({
   selector: 'sp-program',
@@ -12,9 +19,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProgramComponent implements OnInit {
   formProgram: FormGroup;
   indexOfProgram: number;
+  exercices: Exercice[] = [];
+  isExercicePopinOpen = false;
 
   constructor(private programService: ProgramService,
               private route: ActivatedRoute,
+              private router: Router,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -31,16 +41,43 @@ export class ProgramComponent implements OnInit {
     if (this.indexOfProgram || this.indexOfProgram === 0) {
       this.programService
         .getProgramByIndex(this.indexOfProgram)
-        .subscribe(p => this.formProgram.patchValue(p));
+        .subscribe(p => {
+          this.formProgram.patchValue({ name: p.name, description: p.description });
+          this.exercices = p.exercices;
+        }, () => {
+          this.router.navigate(['/plan']);
+        });
     }
   }
 
   save(): void {
+    const program: Program = Object.assign({}, this.formProgram.value);
+    program.exercices = this.exercices;
+
     if (this.indexOfProgram || this.indexOfProgram === 0) {
-      this.programService.updateProgram(this.indexOfProgram, this.formProgram.value);
+      this.programService.updateProgram(this.indexOfProgram, program);
     } else {
-      this.programService.addProgram(this.formProgram.value);
+      this.programService.addProgram(program);
     }
+  }
+
+  cancel(): void {
+    this.router.navigate(['/plan'])
+  }
+
+  openExerciceModal(): void {
+    this.isExercicePopinOpen = true;
+  }
+
+  addExercice(exercice: Exercice): void {
+    if (exercice) {
+      this.exercices.push(exercice);
+    }
+    this.isExercicePopinOpen = false;
+  }
+
+  getTitle(): string {
+    return FormUtils.formatTitleWithErrorMessages(this.formProgram, errorMessage);
   }
 
 }

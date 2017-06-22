@@ -21,7 +21,14 @@
     }
   }
 
-  &:hover {
+  &.disable {
+    color: $sp-color-gray-dark;
+    border-color: $sp-color-gray-dark;
+    background-color: $sp-color-gray-light;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(.disable) {
     color: $sp-color-main;
     background-color: $sp-color-secondary;
   }

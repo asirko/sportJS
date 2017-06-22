@@ -6,12 +6,13 @@
   width: 100vw;
   height: 100vh;
   padding: 150px 50px;
+  overflow: auto;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .popin {
   max-width: 850px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 80px;
   background-color: #fff;
 }

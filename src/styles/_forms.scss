@@ -1,5 +1,17 @@
 @import "shared";
 
+.form-row.form-row {
+  display: block;
+  margin: 10px -10px;
+  overflow: hidden;
+
+  & > * {
+    float: left;
+    margin: 0 10px;
+  }
+
+}
+
 .form-field {
   width: 340px;
   margin: 10px 0;
@@ -22,11 +34,56 @@
     }
   }
 
+  input::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
   textarea {
     resize: vertical;
   }
 
   &.form-field-is-fullwidth {
     width: 100%;
+  }
+  &.form-field-is-small {
+    width: 220px;
+  }
+  &.form-field-is-extrasmall {
+    width: 100px;
+  }
+}
+
+.form-switch {
+
+  display: inline-block;
+  border: 1px solid $sp-color-main;
+  margin: 10px 0;
+  border-radius: 5px;
+
+  .value {
+    position: relative;
+    display: table-cell;
+    margin-right: -1px;
+
+    input {
+      position: absolute;
+      left: -9999px;
+    }
+
+    label {
+      display: table-cell;
+      padding: 10px 20px;
+      color: $sp-color-main;
+      cursor: pointer;
+    }
+
+    input:checked + label {
+      background-color: $sp-color-main;
+      color: $sp-color-secondary;
+    }
+  }
+
+  .value + .value {
+    border-left: 1px solid $sp-color-main;
   }
 }

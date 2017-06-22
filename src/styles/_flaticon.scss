@@ -1,0 +1,42 @@
+
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("/assets/flaticon/Flaticon.eot");
+  src: url("/assets/flaticon/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("/assets/flaticon/Flaticon.woff") format("woff"),
+       url("/assets/flaticon/Flaticon.ttf") format("truetype"),
+       url("/assets/flaticon/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("/assets/flaticon/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+.fi:before{
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-people:before { content: "\f100"; }
+.flaticon-man-cycling:before { content: "\f101"; }
+.flaticon-weightlifting:before { content: "\f102"; }
+
+$font-Flaticon-people: "\f100";
+$font-Flaticon-man-cycling: "\f101";
+$font-Flaticon-weightlifting: "\f102";
