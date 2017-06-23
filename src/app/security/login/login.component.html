@@ -1,0 +1,19 @@
+
+<form class="login" [formGroup]="loginForm" novalidate>
+  <div class="form-field">
+    <label for="username">Nom d'utilisateur</label>
+    <input type="text" id="username" formControlName="username">
+  </div>
+  <div class="form-field">
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" formControlName="password">
+  </div>
+
+  <div class="text-danger" *ngIf="loginFail">
+    login/mot de passe incorrect
+  </div>
+
+  <div class="sp-btn" (click)="login()">
+    Se connecter
+  </div>
+</form>
