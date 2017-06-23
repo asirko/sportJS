@@ -12,12 +12,13 @@
   </div>
 
   <div class="exercices">
-    <div class="exercices-title">
-      Exercices de ce programme
-      <span class="sp-btn" (click)="openExerciceModal()">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        Ajouter un exercice
+    <div class="exercices-title" (click)="openExerciceModal()">
+      <span *ngIf="exercices && exercices.length; else emptyExercices">
+        Exercices de ce programme
       </span>
+      <ng-template #emptyExercices><span>Aucun exercice dans de programme</span></ng-template>
+
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </div>
 
     <table>

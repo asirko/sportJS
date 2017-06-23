@@ -1,6 +1,6 @@
 'use strict';
 
-var programs = require('./mockValues').programs;
+const programs = require('./mockValues').programs;
 
 // Get list of contacts
 exports.get = function(req, res) {

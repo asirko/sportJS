@@ -59,6 +59,7 @@ export class ProgramComponent implements OnInit {
     } else {
       this.programService.addProgram(program);
     }
+    this.router.navigate(['/plan']);
   }
 
   cancel(): void {
