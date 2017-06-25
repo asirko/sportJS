@@ -21,6 +21,10 @@
     }
   }
 
+  &.sp-btn-is-inverted {
+    background-color: $sp-color-warning;
+  }
+
   &.disable {
     color: $sp-color-gray-dark;
     border-color: $sp-color-gray-dark;

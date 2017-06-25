@@ -2,6 +2,8 @@
 
 .header {
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   top: 0;
   height: $sp-header-height;
   width: 100%;
@@ -37,4 +39,36 @@ menu {
       background-color: $sp-color-warning;
     }
   }
+}
+
+.user {
+  align-items: flex-end;
+
+  .username {
+    height: 100%;
+    line-height: $sp-header-height - 6px;
+    font-size: 2rem;
+    color: $sp-color-secondary;
+    cursor: pointer;
+
+    .fa {
+      display: inline-block;
+      width: 30px;
+    }
+
+    .fa-sign-out {
+      display: none;
+      color: $sp-color-warning;
+    }
+
+    &:hover {
+      .fa-user {
+        display: none;
+      }
+      .fa-sign-out {
+        display: inline-block;
+      }
+    }
+  }
+
 }

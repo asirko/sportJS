@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/do';
 
 import { UserService } from './user.service';
@@ -20,6 +21,7 @@ export class AuthGuard implements CanActivate {
     }
 
     return this.userService.getUser$()
+      .filter(user => user !== undefined)
       .map(user => {
         if (!user) {
           this.router.navigate(['/home']);

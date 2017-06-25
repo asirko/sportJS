@@ -1,8 +1,8 @@
 
-<form class="login" [formGroup]="loginForm" novalidate>
+<form class="login" [formGroup]="loginForm" novalidate (keydown.enter)="login()">
   <div class="form-field">
     <label for="username">Nom d'utilisateur</label>
-    <input type="text" id="username" formControlName="username">
+    <input type="text" id="username" formControlName="username" spAutoFocus>
   </div>
   <div class="form-field">
     <label for="password">Mot de passe</label>
@@ -13,7 +13,7 @@
     login/mot de passe incorrect
   </div>
 
-  <div class="sp-btn" (click)="login()">
+  <button class="sp-btn" (click)="login()">
     Se connecter
-  </div>
+  </button>
 </form>

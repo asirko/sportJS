@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopinComponent } from './popin/popin.component';
+import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
 
 @NgModule({
   imports: [
@@ -9,12 +10,14 @@ import { PopinComponent } from './popin/popin.component';
     ReactiveFormsModule
   ],
   declarations: [
-    PopinComponent
+    PopinComponent,
+    AutoFocusDirective
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
-    PopinComponent
+    PopinComponent,
+    AutoFocusDirective
   ]
 })
 export class SharedModule { }

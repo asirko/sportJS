@@ -7,6 +7,7 @@ import { UnknownComponent } from './unknown/unknown.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { ConnectionButtonComponent } from './connection-button/connection-button.component';
 
 @NgModule({
   imports: [
@@ -17,8 +18,14 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   exports: [
     RootRoutingModule,
-    HeaderComponent
+    HeaderComponent,
+    ConnectionButtonComponent
   ],
-  declarations: [HomeComponent, UnknownComponent, HeaderComponent]
+  declarations: [
+    HomeComponent,
+    UnknownComponent,
+    HeaderComponent,
+    ConnectionButtonComponent
+  ]
 })
 export class RootModule { }
