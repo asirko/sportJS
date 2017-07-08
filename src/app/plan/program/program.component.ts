@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ProgramService } from '../program.service';
+import { ProgramService } from '../../shared/program.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Exercice } from './exercice/exercice';
 import { Program } from '../program';

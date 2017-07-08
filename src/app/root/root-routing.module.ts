@@ -21,7 +21,12 @@ const routes: Routes = [{
   canActivate: [AuthGuard]
 }, {
   path: 'run',
-  loadChildren: 'app/run/run.module#RunModule'
+  loadChildren: 'app/run/run.module#RunModule',
+  canActivate: [AuthGuard]
+}, {
+  path: 'stat',
+  loadChildren: 'app/stat/stat.module#StatModule',
+  canActivate: [AuthGuard]
 }, {
   path: '**',
   component: UnknownComponent

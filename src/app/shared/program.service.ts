@@ -4,19 +4,22 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { Program } from './program';
+import { Program } from '../plan/program';
 import { HttpAuthService } from '../security/http-auth.service';
 
 @Injectable()
 export class ProgramService {
-  currentPrograms: Program[];
 
   constructor(private http: HttpAuthService) { }
 
-  findAll(): Observable<Program> {
+  findAll(): Observable<Program[]> {
     return this.http.get(`/api/programs`)
-      .map(res => res.json())
-      .do((list: Program[]) => this.currentPrograms = list);
+      .map(res => res.json());
+  }
+
+  findAllPlusEmpty(): Observable<Program[]> {
+    return this.findAll()
+      .map(list => [...list, {name: 'Autre'}]);
   }
 
   updateProgram(index: number, program: Program): void {

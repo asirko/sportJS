@@ -1,0 +1,8 @@
+<div class="preselection">
+  <div class="form-switch">
+    <div class="value" *ngFor="let program of programs$ | async; let i = index">
+      <input type="radio" [id]="i" [value]="i" name="program">
+      <label [for]="i">{{ program.name }}</label>
+    </div>
+  </div>
+</div>

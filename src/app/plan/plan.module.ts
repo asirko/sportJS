@@ -4,7 +4,7 @@ import { PlanRoutingModule } from './plan-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProgramsComponent } from './programs/programs.component';
 import { ProgramComponent } from './program/program.component';
-import { ProgramService } from './program.service';
+import { ProgramService } from '../shared/program.service';
 import { ExerciceComponent } from './program/exercice/exercice.component';
 
 @NgModule({
@@ -16,9 +16,6 @@ import { ExerciceComponent } from './program/exercice/exercice.component';
     ProgramsComponent,
     ProgramComponent,
     ExerciceComponent
-  ],
-  providers: [
-    ProgramService
   ]
 })
 export class PlanModule { }

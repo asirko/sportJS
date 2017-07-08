@@ -1,0 +1,18 @@
+@import "../../styles/shared";
+
+:host {
+  display: flex;
+}
+
+sp-selector,
+sp-graph {
+  flex-grow: 1;
+  margin: 10px;
+}
+
+.separator {
+  display: inline-block;
+  width: 1px;
+  background-color: $sp-color-gray;
+  box-shadow: 0 0 5px 0 $sp-color-gray;
+}

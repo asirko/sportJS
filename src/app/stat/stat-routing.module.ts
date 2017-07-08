@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SaveComponent } from './save/save.component';
+import { StatComponent } from './stat.component';
 
 const routes: Routes = [{
   path: '',
-  component: SaveComponent
+  component: StatComponent
 }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RunRoutingModule {}
+export class StatRoutingModule { }

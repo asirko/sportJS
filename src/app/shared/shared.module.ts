@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopinComponent } from './popin/popin.component';
 import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
+import { ProgramService } from './program.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
     ReactiveFormsModule,
     PopinComponent,
     AutoFocusDirective
+  ],
+  providers: [
+    ProgramService
   ]
 })
 export class SharedModule { }

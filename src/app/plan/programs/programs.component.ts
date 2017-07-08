@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { ProgramService } from '../program.service';
+import { ProgramService } from '../../shared/program.service';
 import { Program } from '../program';
 
 @Component({
@@ -11,7 +11,7 @@ import { Program } from '../program';
   styleUrls: ['./programs.component.scss']
 })
 export class ProgramsComponent implements OnInit {
-  programs$: Observable<Program>;
+  programs$: Observable<Program[]>;
 
   constructor(private programService: ProgramService) { }
 
