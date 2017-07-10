@@ -43,11 +43,6 @@
 
       <div class="form-row" *ngIf="exerciceForm.value.category === 'REINFORCEMENT'">
         <div class="form-field form-field-is-extrasmall">
-          <label for="weigth">Poids</label>
-          <input type="text" id="weigth" formControlName="weigth">
-        </div>
-
-        <div class="form-field form-field-is-extrasmall">
           <label for="nbRepetion">Répétitions</label>
           <input type="text" id="nbRepetion" formControlName="nbRepetion">
         </div>
@@ -55,6 +50,11 @@
         <div class="form-field form-field-is-extrasmall">
           <label for="nbMouvement">Mouvements</label>
           <input type="text" id="nbMouvement" formControlName="nbMouvement">
+        </div>
+
+        <div class="form-field form-field-is-extrasmall">
+          <label for="weigth">Poids</label>
+          <input type="text" id="weigth" formControlName="weigth">
         </div>
       </div>
     </div>

@@ -1,5 +1,3 @@
-'use strict';
-
 const tokens = require('../auth/auth.token');
 
 exports.getUser = function(req, res) {

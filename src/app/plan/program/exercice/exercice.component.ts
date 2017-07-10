@@ -20,7 +20,7 @@ const errorMessage = {
 })
 export class ExerciceComponent implements OnInit {
 
-  @Output() exercice$ = new EventEmitter<Exercice>();
+  @Output() exercice = new EventEmitter<Exercice>();
   exerciceForm: FormGroup;
 
   get exerciceTypes(): string[] {
@@ -90,12 +90,13 @@ export class ExerciceComponent implements OnInit {
 
   addExercice(): void {
     if (this.exerciceForm.valid) {
-      this.exercice$.emit(this.exerciceForm.value);
+      console.log('ici');
+      this.exercice.emit(this.exerciceForm.value);
     }
   }
 
   cancel(): void {
-    this.exercice$.emit(null);
+    this.exercice.emit(null);
   }
 
   getTitle(): string {

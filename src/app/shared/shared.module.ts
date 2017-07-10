@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PopinComponent } from './popin/popin.component';
 import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
 import { ProgramService } from './program.service';
+import { ExerciceService } from './exercice.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ProgramService } from './program.service';
     AutoFocusDirective
   ],
   providers: [
-    ProgramService
+    ProgramService,
+    ExerciceService
   ]
 })
 export class SharedModule { }

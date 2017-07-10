@@ -1,5 +1,3 @@
-'use strict';
-
 const programs = require('./mockValues').programs;
 
 // Get list of contacts
