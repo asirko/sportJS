@@ -1,10 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Exercice} from "../exercice/exercice";
 
-class SelectableExercice extends Exercice {
-  selected?: boolean;
-}
-
 @Component({
   selector: 'sp-exercices-list',
   templateUrl: './exercices-list.component.html',
@@ -12,12 +8,11 @@ class SelectableExercice extends Exercice {
 })
 export class ExercicesListComponent implements OnInit {
 
-  @Input() exercices: SelectableExercice[];
+  @Input() exercices: Exercice[];
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   moveUp(i: number): void {
     if (i < this.exercices.length - 1) {

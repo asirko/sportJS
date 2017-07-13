@@ -1,4 +1,6 @@
-<div class="no-exercices" *ngIf="!exercices.length">Aucun exercice dans de programme</div>
+
+<div class="nb-exercices" *ngIf="exercices.length; else noExercice">Il y a {{ exercices.length }} exercices.</div>
+<ng-template #noExercice><div class="no-exercices">Aucun exercice dans de programme</div></ng-template>
 
 <table>
   <tr class="exercice" *ngFor="let exercice of exercices; let i = index; let isFirst = first; let isLast = last">
