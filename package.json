@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "concurrently -k \"npm run start:front\" \"npm run start:mock\"",
     "start:front": "ng serve -o --proxy proxy-config.json",
-    "start:mock": "nodemon ./mock/server.js",
+    "start:mock": "node ./mock/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -35,7 +35,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.1.1",
+    "@angular/cli": "^1.2.0",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.0.0",
     "@types/d3-array": "^1.2.0",

@@ -4,15 +4,16 @@
   display: flex;
 }
 
-sp-selector,
-sp-graph {
-  flex-grow: 1;
+.block {
+  width: 50%;
   margin: 10px;
 }
 
 .separator {
   display: inline-block;
-  width: 1px;
+  padding: 0 2px;
+  margin: 0 5px;
   background-color: $sp-color-gray;
   box-shadow: 0 0 5px 0 $sp-color-gray;
+  cursor: ew-resize;
 }

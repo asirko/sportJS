@@ -41,3 +41,28 @@
     outline: none;
   }
 }
+
+.sp-switch {
+
+  display: inline-block;
+  border: 1px solid $sp-color-main;
+  margin: 10px 0;
+  border-radius: 5px;
+
+  .option {
+    display: table-cell;
+    position: relative;
+    padding: 10px 20px;
+    margin-right: -1px;
+    cursor: pointer;
+
+    &.active {
+      background-color: $sp-color-main;
+      color: $sp-color-secondary;
+    }
+  }
+
+  .option + .option {
+    border-left: 1px solid $sp-color-main;
+  }
+}

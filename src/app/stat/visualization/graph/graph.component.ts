@@ -1,47 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
+import {ResizeGraphService} from "../resize-graph.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'sp-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
-export class GraphComponent implements OnInit {
+export class GraphComponent implements OnInit, OnDestroy {
 
-  private margin = {top: 20, right: 20, bottom: 30, left: 50};
-  private width: number;
-  private height: number;
+  private margin = {top: 20, right: 20, bottom: 20, left: 30};
+  private width = 400;
+  private height = 500;
   private x: any;
   private y: any;
   private svg: any;
   private line: d3Shape.Line<[number, number]>;
 
-  constructor() {
-    this.width = 900 - this.margin.left - this.margin.right ;
-    this.height = 500 - this.margin.top - this.margin.bottom;
-  }
+  resizeSub: Subscription;
+
+  constructor(private resizeGraphService: ResizeGraphService) {}
 
   ngOnInit() {
+    this.resizeSub = this.resizeGraphService.getWidth$().subscribe(width => {
+      this.width = width;
+      this.drawGraph(Stocks);
+    });
+  }
+
+  ngOnDestroy() {
+    this.resizeSub.unsubscribe();
+  }
+
+  private drawGraph(data) {
     this.initSvg();
     this.initAxis();
     this.drawAxis();
-    this.drawLine();
+    this.drawLine(data);
   }
 
   private initSvg() {
-    this.svg = d3.select('svg')
-      .append('g')
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+    if (this.svg) {
+      this.svg.remove();
+    }
+    this.svg = d3.select('.svg-container')
+      .append('svg')
+      .attr('width', '' + this.width)
+      .attr('height', '' + this.height);
   }
 
   private initAxis() {
-    this.x = d3Scale.scaleTime().range([0, this.width]);
-    this.y = d3Scale.scaleLinear().range([this.height, 0]);
+    this.x = d3Scale.scaleTime().range([0, this.width - this.margin.left - this.margin.right]);
+    this.y = d3Scale.scaleLinear().range([this.height - this.margin.top - this.margin.bottom, 0]);
     this.x.domain(d3Array.extent(Stocks, (d) => d.date ));
     this.y.domain(d3Array.extent(Stocks, (d) => d.value ));
   }
@@ -50,11 +66,12 @@ export class GraphComponent implements OnInit {
 
     this.svg.append('g')
       .attr('class', 'axis axis--x')
-      .attr('transform', 'translate(0,' + this.height + ')')
+      .attr('transform', `translate(${this.margin.left},${this.height - this.margin.top - this.margin.bottom})`)
       .call(d3Axis.axisBottom(this.x));
 
     this.svg.append('g')
       .attr('class', 'axis axis--y')
+      .attr('transform', `translate(${this.margin.left}, 0)`)
       .call(d3Axis.axisLeft(this.y))
       .append('text')
       .attr("fill", "#000")
@@ -63,24 +80,27 @@ export class GraphComponent implements OnInit {
       .attr('y', 6)
       .attr('dy', '.71em')
       .style('text-anchor', 'end')
-      .text('Price ($)');
+      .text('bpm');
   }
 
-  private drawLine() {
+  private drawLine(data) {
     this.line = d3Shape.line()
       .x( (d: any) => this.x(d.date) )
       .y( (d: any) => this.y(d.value) );
 
     this.svg.append('path')
-      .datum(Stocks)
-      .attr("class", "line")
+      .attr('transform', `translate(${this.margin.left}, 0)`)
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 1.5)
       .attr('d', this.line)
     ;
   }
 
 }
-
-
 
 export interface Stock {
   date: Date,
