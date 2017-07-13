@@ -1,0 +1,28 @@
+<div class="no-exercices" *ngIf="!exercices.length">Aucun exercice dans de programme</div>
+
+<table>
+  <tr class="exercice" *ngFor="let exercice of exercices; let i = index; let isFirst = first; let isLast = last">
+    <td class="exercice-category">
+      <i class="fi flaticon-people" aria-hidden="true"
+         [ngClass]="{'flaticon-people': exercice.category === 'LESSON',
+                     'flaticon-man-cycling': exercice.category === 'CARDIO_TRAINING',
+                     'flaticon-weightlifting': exercice.category === 'REINFORCEMENT' }"></i>
+    </td>
+    <td>{{ exercice.type }}</td>
+    <td>{{ exercice.duration }}</td>
+    <td>{{ exercice.comment }}</td>
+    <td class="actions">
+        <div class="ordering">
+          <div>
+            <i class="fa fa-arrow-up" *ngIf="!isFirst" aria-hidden="true" (click)="moveDown(i)"></i>&nbsp;
+          </div>
+          <div>
+            <i class="fa fa-arrow-down" *ngIf="!isLast" aria-hidden="true" (click)="moveUp(i)"></i>&nbsp;
+          </div>
+        </div>
+        <div class="deleting">
+          <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteExercice(i)"></i>
+        </div>
+    </td>
+  </tr>
+</table>
