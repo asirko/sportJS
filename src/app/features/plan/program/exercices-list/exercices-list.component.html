@@ -1,34 +1,31 @@
 
-<div class="nb-exercices" *ngIf="exercices.length; else noExercice">Il y a {{ exercices.length }} exercices.</div>
-<ng-template #noExercice><div class="no-exercices">Aucun exercice dans de programme</div></ng-template>
+<div class="nb-exercices">Il y a #todoNombre exercices.</div>
+<div class="no-exercices">Aucun exercice dans de programme</div>
 
 <table>
-  <tr class="exercice" *ngFor="let exercice of exercices; let i = index; let isFirst = first; let isLast = last">
+  <tr class="exercice">
     <td class="exercice-category">
-      <i class="fi flaticon-people" aria-hidden="true"
-         [ngClass]="{'flaticon-people': exercice.category === 'LESSON',
-                     'flaticon-man-cycling': exercice.category === 'CARDIO_TRAINING',
-                     'flaticon-weightlifting': exercice.category === 'REINFORCEMENT' }"></i>
+      <i class="fi flaticon-people flaticon-man-cycling flaticon-weightlifting"></i>
     </td>
-    <td>{{ exercice.type }}</td>
+    <td>#todoType</td>
     <td>
-      {{ exercice.duration }}
-      <span *ngIf="exercice.duration && exercice.speed">à</span>
-      <span class="l-no-line-break">{{ exercice.speed }}</span>
-      {{ exercice.weigth }}
-      {{ exercice.nbRepetion }}
-      <span *ngIf="exercice.nbRepetion">x</span>
-      {{ exercice.nbMouvement }}
+      #todoDuree
+      à
+      #todoVitesse
+      #todoPoids
+      #todoNbRépétition
+      x
+      #todoNbMouvements
     </td>
-    <td [innerHTML]="exercice.comment | parseLineBreak"></td>
+    <td>#todoComment</td>
     <td class="actions">
         <div class="ordering">
-          <i class="fa fa-arrow-up" *ngIf="!isFirst; else emptyCell" aria-hidden="true" (click)="moveDown(i)"></i>
-          <i class="fa fa-arrow-down" *ngIf="!isLast; else emptyCell" aria-hidden="true" (click)="moveUp(i)"></i>
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i class="fa fa-arrow-down" aria-hidden="true"></i>
           <ng-template #emptyCell><div>&nbsp;</div></ng-template>
         </div>
         <div class="deleting">
-          <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteExercice(i)"></i>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
         </div>
     </td>
   </tr>

@@ -13,24 +13,4 @@ export class ExercicesListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
-
-  moveUp(i: number): void {
-    if (i < this.exercices.length - 1) {
-      const exercice = this.exercices[i];
-      this.exercices[i] = this.exercices[i + 1];
-      this.exercices[i + 1] = exercice
-    }
-  }
-
-  moveDown(i: number): void {
-    if (i > 0) {
-      const exercice = this.exercices[i];
-      this.exercices[i] = this.exercices[i - 1];
-      this.exercices[i - 1] = exercice
-    }
-  }
-
-  deleteExercice(i: number): void {
-    this.exercices.splice(i, 1);
-  }
 }
