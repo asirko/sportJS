@@ -24,18 +24,17 @@
 }
 
 td {
+  height: inherit;
   padding: 0 15px;
 }
 
 .ordering {
   display: flex;
   flex-direction: column;
-
-  & > * {
-    flex-grow: 1;
-  }
+  justify-content: space-around;
 
   .fa {
+    display: block;
     padding: 3px;
     font-size: 1.2rem;
     color: $sp-color-main;

@@ -11,16 +11,21 @@
                      'flaticon-weightlifting': exercice.category === 'REINFORCEMENT' }"></i>
     </td>
     <td>{{ exercice.type }}</td>
-    <td>{{ exercice.duration }}</td>
+    <td>
+      {{ exercice.duration }}
+      <span *ngIf="exercice.duration && exercice.speed">à</span>
+      <span class="l-no-line-break">{{ exercice.speed }}</span>
+      {{ exercice.weigth }}
+      {{ exercice.nbRepetion }}
+      <span *ngIf="exercice.nbRepetion">x</span>
+      {{ exercice.nbMouvement }}
+    </td>
     <td>{{ exercice.comment }}</td>
     <td class="actions">
         <div class="ordering">
-          <div>
-            <i class="fa fa-arrow-up" *ngIf="!isFirst" aria-hidden="true" (click)="moveDown(i)"></i>&nbsp;
-          </div>
-          <div>
-            <i class="fa fa-arrow-down" *ngIf="!isLast" aria-hidden="true" (click)="moveUp(i)"></i>&nbsp;
-          </div>
+          <i class="fa fa-arrow-up" *ngIf="!isFirst; else emptyCell" aria-hidden="true" (click)="moveDown(i)"></i>
+          <i class="fa fa-arrow-down" *ngIf="!isLast; else emptyCell" aria-hidden="true" (click)="moveUp(i)"></i>
+          <ng-template #emptyCell><div>&nbsp;</div></ng-template>
         </div>
         <div class="deleting">
           <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteExercice(i)"></i>

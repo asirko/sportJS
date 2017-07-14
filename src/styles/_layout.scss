@@ -1,11 +1,15 @@
 @import "shared";
 
-.card {
+.l-card {
   padding: 10px;
   margin: 10px;
   box-shadow: 0 0 5px 1px $sp-color-gray-dark;
 }
 
-.text-danger {
+.l-text-danger {
   color: $sp-color-danger !important;
+}
+
+.l-no-line-break {
+  white-space: nowrap;
 }
