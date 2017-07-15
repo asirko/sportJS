@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { CARDIO_TRAINING, Exercice, EXERCICE_TYPES, LESSON, REINFORCEMENT } from './exercice';
+import { CARDIO_TRAINING, Exercice, EXERCICE_TYPES, LESSON, REINFORCEMENT } from '../../../shared/exercice/exercice';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormUtils } from '../../../shared/utils/form-utils';
-import { parseErrorsFromMarkup } from 'tslint/lib/test/parse';
 
 const errorMessage = {
   categoryRequired: 'il faut choisir entre cours, cardio et renforcement',
@@ -90,12 +89,11 @@ export class ExerciceComponent implements OnInit {
 
   addExercice(): void {
     if (this.exerciceForm.valid) {
-      console.log('ici');
       this.exercice.emit(this.exerciceForm.value);
     }
   }
 
-  cancel(): void {
+  close(): void {
     this.exercice.emit(null);
   }
 

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { StatRoutingModule } from './stat-routing.module';
 import { SelectorComponent } from './selector/selector.component';
@@ -7,11 +6,12 @@ import { StatComponent } from './stat.component';
 import { VisualizationComponent } from './visualization/visualization.component';
 import { SynthesisComponent } from './visualization/synthesis/synthesis.component';
 import {GraphComponent} from "./visualization/graph/graph.component";
-import { ExerciceStoreDirective } from './exercice-store.directive';
+import {SharedModule} from "../shared/shared.module";
+import {RecordStoreService} from "./record-store.service";
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     StatRoutingModule
   ],
   declarations: [
@@ -19,8 +19,8 @@ import { ExerciceStoreDirective } from './exercice-store.directive';
     SelectorComponent,
     StatComponent,
     VisualizationComponent,
-    SynthesisComponent,
-    ExerciceStoreDirective
-  ]
+    SynthesisComponent
+  ],
+  providers: [RecordStoreService]
 })
 export class StatModule { }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { ProgramService } from '../../shared/program.service';
-import { Program } from '../program';
+import { ProgramService } from '../../shared/program/program.service';
+import { Program } from '../../shared/program/program';
 
 @Component({
   selector: 'sp-programs',

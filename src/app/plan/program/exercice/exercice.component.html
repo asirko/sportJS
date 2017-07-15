@@ -1,4 +1,4 @@
-<sp-popin>
+<sp-popin (exit)="close()">
   <form [formGroup]="exerciceForm" novalidate>
 
     <h1>Contruire l'exercice à ajouter au programme</h1>
@@ -71,7 +71,7 @@
          [title]="getTitle()">
       Ajouter l'exercice
     </div>
-    <div class="sp-btn sp-btn-is-secondary" (click)="cancel()">
+    <div class="sp-btn sp-btn-is-secondary" (click)="close()">
       Annuler
     </div>
   </div>

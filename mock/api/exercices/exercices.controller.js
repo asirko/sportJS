@@ -1,4 +1,4 @@
-const exercices = require('./mockValues').programs;
+const exercices = require('./mockValues').exercices;
 
 // Get list of exercices
 exports.get = function(req, res) {

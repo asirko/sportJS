@@ -1,0 +1,19 @@
+@import "../../../../styles/shared";
+
+.title {
+  font-size: 2rem;
+  color: $sp-color-main;
+}
+
+.info {
+  margin: 20px 0;
+}
+
+.val {
+  font-family: $sp-font-timeburnerbold;
+  color: $sp-color-main;
+}
+
+.no-record {
+  font-style: italic;
+}

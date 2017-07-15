@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopinComponent } from './popin/popin.component';
 import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
-import { ProgramService } from './program.service';
-import { ExerciceService } from './exercice.service';
+import { ProgramService } from './program/program.service';
+import { ExerciceService } from './exercice/exercice.service';
+import { FilterExerciceByCategoryPipe } from './exercice/filter-exercice-by-category.pipe';
+import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe';
 
 @NgModule({
   imports: [
@@ -13,13 +15,17 @@ import { ExerciceService } from './exercice.service';
   ],
   declarations: [
     PopinComponent,
-    AutoFocusDirective
+    AutoFocusDirective,
+    FilterExerciceByCategoryPipe,
+    ParseLineBreakPipe
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     PopinComponent,
-    AutoFocusDirective
+    AutoFocusDirective,
+    FilterExerciceByCategoryPipe,
+    ParseLineBreakPipe
   ],
   providers: [
     ProgramService,

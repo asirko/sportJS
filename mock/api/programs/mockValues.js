@@ -96,7 +96,7 @@ exports.programs = [
         "weigth": "",
         "nbRepetion": "4",
         "nbMouvement": "",
-        "comment": "30' lombaires\n30' gainage droit\n30' gainage droit\n30' gainage gauche\n30' récupération"
+        "comment": "30' lombaires\n30' gainage\n30' gainage droit\n30' gainage gauche\n30' récupération"
       },
       {
         "category": "REINFORCEMENT",

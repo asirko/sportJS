@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { Program } from '../plan/program';
-import { HttpAuthService } from '../security/http-auth.service';
+import { Program } from './program';
+import { HttpAuthService } from '../../security/http-auth.service';
 
 @Injectable()
 export class ProgramService {

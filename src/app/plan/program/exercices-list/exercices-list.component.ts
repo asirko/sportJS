@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Exercice} from "../exercice/exercice";
+import {Exercice} from "../../../shared/exercice/exercice";
 
 @Component({
   selector: 'sp-exercices-list',

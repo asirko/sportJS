@@ -41,9 +41,8 @@ export class StatComponent implements OnInit {
   private getBlocksWidth(mouseX: number): {leftWidth, rightWidth} {
     const rectContainer = this.elementRef.nativeElement.getBoundingClientRect();
     const marginAndPaddingSeparator = 7;
-    const marginblock = 10;
-    const leftWidth = mouseX - rectContainer.left - marginblock * 2 - marginAndPaddingSeparator;
-    const rightWidth = rectContainer.width + rectContainer.left - mouseX - marginblock * 2 - marginAndPaddingSeparator;
+    const leftWidth = mouseX - rectContainer.left - marginAndPaddingSeparator;
+    const rightWidth = rectContainer.width + rectContainer.left - mouseX - marginAndPaddingSeparator;
     return {leftWidth, rightWidth};
   }
 

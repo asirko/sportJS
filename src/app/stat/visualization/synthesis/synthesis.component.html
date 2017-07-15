@@ -1,3 +1,26 @@
-<p>
-  synthesis works!
-</p>
+
+<div *ngIf="(record$ | async); else noRecord">
+  <div class="title">
+    {{ getType$() | async }} ({{ getDuration$() | async }})
+  </div>
+  <div class="info">
+    <div class="info-label">Minimum</div>
+    <div class="info-value">
+      <span class="val">{{ getMin$() | async | number: '1.0-0' }}</span>&nbsp;bpm
+    </div>
+  </div>
+  <div class="info">
+    <div class="info-label">Moyenne</div>
+    <div class="info-value">
+      <span class="val">{{ getAverage$() | async | number: '1.0-0' }}</span>&nbsp;bpm
+    </div>
+  </div>
+  <div class="info">
+    <div class="info-label">Maximum</div>
+    <div class="info-value">
+      <span class="val">{{ getMax$() | async | number: '1.0-0' }}</span>&nbsp;bpm
+    </div>
+  </div>
+</div>
+
+<ng-template #noRecord><div class="no-record">Sélectionner un enregistrement</div></ng-template>

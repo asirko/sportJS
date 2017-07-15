@@ -1,3 +1,25 @@
-<p>
-  selector works!
-</p>
+
+<div class="sp-switch">
+  <div class="option" [ngClass]="{'active': !selectedCategory}"
+       (click)="setSelectedCategory('')">Tous</div>
+  <div class="option" [ngClass]="{'active': selectedCategory === 'LESSON'}"
+       (click)="setSelectedCategory('LESSON')">Cours</div>
+  <div class="option" [ngClass]="{'active': selectedCategory === 'CARDIO_TRAINING'}"
+       (click)="setSelectedCategory('CARDIO_TRAINING')">Cardio</div>
+  <div class="option" [ngClass]="{'active': selectedCategory === 'REINFORCEMENT'}"
+       (click)="setSelectedCategory('REINFORCEMENT')">Renfo</div>
+</div>
+
+<div class="records">
+  <div class="l-card record" (click)="selectRecord(record)" [ngClass]="{'selected': record === selectedRecord}"
+       *ngFor="let record of records$ | async | filterExerciceByCategory:selectedCategory">
+
+    <i class="fi flaticon-people record-icon" aria-hidden="true"
+       [ngClass]="{'flaticon-people': record.category === 'LESSON',
+                   'flaticon-man-cycling': record.category === 'CARDIO_TRAINING',
+                   'flaticon-weightlifting': record.category === 'REINFORCEMENT' }"></i>
+
+    <span class="record-title">{{ record.type }}</span>
+    <span class="record-date">{{ record.date | date:'longDate' }}</span>
+  </div>
+</div>

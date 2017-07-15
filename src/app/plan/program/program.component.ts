@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ProgramService } from '../../shared/program.service';
+import { ProgramService } from '../../shared/program/program.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Exercice } from './exercice/exercice';
-import { Program } from '../program';
+import { Exercice } from '../../shared/exercice/exercice';
+import { Program } from '../../shared/program/program';
 import { FormUtils } from '../../shared/utils/form-utils';
 
 const errorMessage = {
