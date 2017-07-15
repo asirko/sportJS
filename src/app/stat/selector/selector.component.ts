@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ExerciceCategory} from "../../shared/exercice/exercice";
-import {ExerciceService} from "../../shared/exercice/exercice.service";
+import {ExerciceCategory} from "../../shared/program/exercice";
+import {RecordService} from "../../shared/record/record.service";
 import {Observable} from "rxjs/Observable";
-import {Record} from "../../shared/exercice/record";
+import {Record} from "../../shared/record/record";
 import {RecordStoreService} from "../record-store.service";
 
 @Component({
@@ -16,7 +16,7 @@ export class SelectorComponent implements OnInit {
   selectedRecord: Record;
   records$: Observable<Record[]>;
 
-  constructor(private exerciceService: ExerciceService,
+  constructor(private exerciceService: RecordService,
               private recordStoreService: RecordStoreService) { }
 
   ngOnInit() {

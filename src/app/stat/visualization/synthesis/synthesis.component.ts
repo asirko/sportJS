@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RecordStoreService} from "../../record-store.service";
 import {Observable} from "rxjs/Observable";
-import {Record} from "../../../shared/exercice/record";
+import {Record} from "../../../shared/record/record";
 import 'rxjs/add/operator/reduce'
 import 'rxjs/add/operator/max'
 import 'rxjs/add/operator/min'

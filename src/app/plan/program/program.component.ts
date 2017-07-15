@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProgramService } from '../../shared/program/program.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Exercice } from '../../shared/exercice/exercice';
+import { Exercice } from '../../shared/program/exercice';
 import { Program } from '../../shared/program/program';
 import { FormUtils } from '../../shared/utils/form-utils';
 

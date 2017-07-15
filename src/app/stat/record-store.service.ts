@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Record} from "../shared/exercice/record";
+import {Record} from "../shared/record/record";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()

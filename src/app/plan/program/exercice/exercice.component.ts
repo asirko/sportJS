@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { CARDIO_TRAINING, Exercice, EXERCICE_TYPES, LESSON, REINFORCEMENT } from '../../../shared/exercice/exercice';
+import { CARDIO_TRAINING, Exercice, EXERCICE_TYPES, LESSON, REINFORCEMENT } from '../../../shared/program/exercice';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormUtils } from '../../../shared/utils/form-utils';
 

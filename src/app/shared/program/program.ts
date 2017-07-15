@@ -1,4 +1,4 @@
-import { Exercice } from '../exercice/exercice';
+import { Exercice } from './exercice';
 
 export class Program {
   name: string;

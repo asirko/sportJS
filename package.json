@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "concurrently -k \"npm run start:front\" \"npm run start:mock\"",
     "start:front": "ng serve -o --proxy proxy-config.json",
-    "start:mock": "node ./mock/server.js",
+    "start:mock": "nodemon ./mock/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

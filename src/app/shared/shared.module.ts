@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PopinComponent } from './popin/popin.component';
 import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
 import { ProgramService } from './program/program.service';
-import { ExerciceService } from './exercice/exercice.service';
-import { FilterExerciceByCategoryPipe } from './exercice/filter-exercice-by-category.pipe';
+import { RecordService } from './record/record.service';
+import { FilterRecordByCategoryPipe } from './record/filter-record-by-category.pipe';
 import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe
   declarations: [
     PopinComponent,
     AutoFocusDirective,
-    FilterExerciceByCategoryPipe,
+    FilterRecordByCategoryPipe,
     ParseLineBreakPipe
   ],
   exports: [
@@ -24,12 +24,12 @@ import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe
     ReactiveFormsModule,
     PopinComponent,
     AutoFocusDirective,
-    FilterExerciceByCategoryPipe,
+    FilterRecordByCategoryPipe,
     ParseLineBreakPipe
   ],
   providers: [
     ProgramService,
-    ExerciceService
+    RecordService
   ]
 })
 export class SharedModule { }

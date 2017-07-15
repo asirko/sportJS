@@ -4,7 +4,7 @@ import {HttpAuthService} from "../../security/http-auth.service";
 import {Record} from "./record";
 
 @Injectable()
-export class ExerciceService {
+export class RecordService {
 
   constructor(private http: HttpAuthService) { }
 
