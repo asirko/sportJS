@@ -20,7 +20,7 @@ export class HttpAuthService {
     return options;
   }
 
-  static addApplicationJsonContent(options: RequestOptionsArgs = new RequestOptions()) {
+  static addApplicationJsonContent(options: RequestOptionsArgs = new RequestOptions()): RequestOptionsArgs {
     if (!options.headers) {
       options.headers = new Headers();
     }
