@@ -16,7 +16,6 @@ import {Subject} from "rxjs/Subject";
 })
 export class SynthesisComponent implements OnInit, OnDestroy {
 
-  unsubscribe$ =  new Subject<void>();
   record$: Observable<Record>;
 
   constructor(private recordStoreService: RecordStoreService) { }
