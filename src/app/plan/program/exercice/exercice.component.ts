@@ -19,86 +19,34 @@ const errorMessage = {
 })
 export class ExerciceComponent implements OnInit {
 
-  @Output() exercice = new EventEmitter<Exercice>();
-  exerciceForm: FormGroup;
-
-  get exerciceTypes(): string[] {
-    if (!this.exerciceForm.value.category) {
-      return [];
-    }
-    return EXERCICE_TYPES[this.exerciceForm.value.category];
-  }
-
-  constructor(private fb: FormBuilder) { }
+  constructor() { }
 
   ngOnInit() {
-    this.exerciceForm = this.fb.group({
-      category: '',
-      type: '',
-      duration: '',
-      speed: '',
-      weigth: '',
-      nbRepetion: '',
-      nbMouvement: '',
-      comment: ''
-    }, { validator: this.crossFieldValidation() });
+    // fields:
+    // - category
+    // - type
+    // - duration
+    // - speed
+    // - weigth
+    // - nbRepetion
+    // - nbMouvement
+    // - comment
   }
 
-  resetForm(): void {
-    this.exerciceForm.patchValue({
-      type: '',
-      duration: '',
-      speed: '',
-      weigth: '',
-      nbRepetion: '',
-      nbMouvement: '',
-      comment: ''
-    });
-  }
+  // TODO: validation:
+  // category === LESSON => 'type' et 'duration' obligatoire
+  // category === CARDIO_TRAINING => 'type', 'duration' et 'speed' obligatoire
+  // category === REINFORCEMENT => 'type', 'nbRepetion' et 'nbMouvement' obligatoire
 
-  crossFieldValidation() {
-    return (group: FormGroup): {[key: string]: any} => {
-      const errors: any = {};
-      const category = group.controls['category'].value;
-
-      if (!category) {
-        errors.categoryRequired = true;
-      } else if (category === LESSON) {
-        Object.assign(errors, this.fieldRequired(group, 'type', 'duration'));
-      } else if (category === CARDIO_TRAINING) {
-        Object.assign(errors, this.fieldRequired(group, 'type', 'duration', 'speed'));
-      } else if (category === REINFORCEMENT) {
-        Object.assign(errors, this.fieldRequired(group, 'type', 'nbRepetion', 'nbMouvement'));
-      }
-
-      return errors;
-    }
-  }
-
-  fieldRequired(group: FormGroup, ...fields: string[]): any {
-    const errors = {};
-    fields.forEach(field => {
-      const fieldValue = group.controls[field].value;
-      if (!fieldValue) {
-        errors[field + 'Required'] = true;
-      }
-    });
-
-    return errors
-  }
 
   addExercice(): void {
-    if (this.exerciceForm.valid) {
-      this.exercice.emit(this.exerciceForm.value);
-    }
   }
 
   close(): void {
-    this.exercice.emit(null);
   }
 
   getTitle(): string {
-    return FormUtils.formatTitleWithErrorMessages(this.exerciceForm, errorMessage);
+    return null;
   }
 
 }
