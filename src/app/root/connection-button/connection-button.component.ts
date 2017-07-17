@@ -3,6 +3,7 @@ import {Router, NavigationEnd} from '@angular/router';
 import {UserService} from '../../security/user.service';
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/combineLatest";
+import "rxjs/add/operator/filter";
 
 @Component({
   selector: 'sp-connection-button',
