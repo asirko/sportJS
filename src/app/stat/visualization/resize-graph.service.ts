@@ -10,7 +10,7 @@ export class ResizeGraphService {
   constructor() { }
 
   setWidth(width: number): void {
-    this.width$.next(width)
+    this.width$.next(width);
   }
 
   getWidth$(): Observable<number> {
