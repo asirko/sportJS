@@ -5,10 +5,17 @@ import { ProgramComponent } from './program/program.component';
 
 const routes: Routes = [{
     path: '',
-    component: ProgramsComponent
-  }, {
-    path: 'detail',
-    component: ProgramComponent
+    component: ProgramsComponent,
+    children: [
+      {
+        path: '',
+        component: null
+      },
+      {
+        path: 'detail',
+        component: ProgramComponent
+      }
+    ]
   }, {
     path: 'detail/:id',
     component: ProgramComponent
