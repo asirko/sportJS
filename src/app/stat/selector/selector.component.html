@@ -11,7 +11,7 @@
 </div>
 
 <div class="records">
-  <div class="l-card record" (click)="selectRecord(record)" [ngClass]="{'selected': record === selectedRecord}"
+  <div class="l-card record" (click)="selectRecord(record)" [ngClass]="{'selected': record.date === selectedRecordTmp}"
        *ngFor="let record of records$ | async | filterRecordByCategory:selectedCategory">
 
     <i class="fi flaticon-people record-icon" aria-hidden="true"
