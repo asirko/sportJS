@@ -19,18 +19,58 @@ const errorMessage = {
 })
 export class ExerciceComponent implements OnInit {
 
-  constructor() { }
+  @Output() exercice = new EventEmitter<Exercice>();
+  exerciceForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    // fields:
-    // - category
-    // - type
-    // - duration
-    // - speed
-    // - weigth
-    // - nbRepetion
-    // - nbMouvement
-    // - comment
+    this.exerciceForm = this.fb.group({
+      category: '',
+      type: '',
+      duration: '',
+      speed: '',
+      weigth: '',
+      nbRepetion: '',
+      nbMouvement: '',
+      comment: ''
+    }, { validator: this.getValidator() });
+  }
+
+  resetForm() {
+    this.exerciceForm.patchValue({
+      type: '',
+      duration: '',
+      speed: '',
+      weigth: '',
+      nbRepetion: '',
+      nbMouvement: ''
+    });
+  }
+
+  private getValidator(): (fg: FormGroup)=> any {
+    return fg => {
+      if (!fg.get('category').value) {
+        return {categoryRequired: true};
+      }
+
+      const errors: any = {};
+
+      if (fg.get('category').value === LESSON) {
+        if (!fg.get('type').value) {
+          errors.typeRequired = true;
+        }
+        if (!fg.get('duration').value) {
+          errors.durationRequired = true;
+        }
+      } else if (fg.get('category').value === CARDIO_TRAINING) {
+
+      } else if (fg.get('category').value === REINFORCEMENT) {
+
+      }
+
+      return errors;
+    }
   }
 
   // TODO: validation:
@@ -40,13 +80,23 @@ export class ExerciceComponent implements OnInit {
 
 
   addExercice(): void {
+    if (this.exerciceForm.valid) {
+      this.exercice.emit(this.exerciceForm.value)
+    }
   }
 
   close(): void {
+    this.exercice.emit(null);
   }
 
   getTitle(): string {
-    return null;
+    if (!this.exerciceForm.errors) {
+      return '';
+    }
+
+    return Object.keys(this.exerciceForm.errors)
+      .map(k => errorMessage[k])
+      .join('\n')
   }
 
 }
