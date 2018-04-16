@@ -1,0 +1,40 @@
+@import "../../../../styles/shared";
+
+:host {
+  display: block;
+  margin: 10px;
+}
+
+.exercices-title {
+  display: inline-flex;
+  cursor: pointer;
+
+  &:hover {
+    span {
+      text-decoration: underline;
+    }
+    i {
+      transform: scale(1.2);
+    }
+  }
+
+  i {
+    margin-left: 10px;
+    font-size: 30px;
+    color: $sp-color-main;
+    transition: .3s;
+  }
+
+  span {
+    font-size: 1.2rem;
+    font-family: $sp-font-timeburnerbold, sans-serif;
+    line-height: 30px;
+    color: $sp-color-main;
+  }
+}
+
+.actions {
+  display: flex;
+  margin: 10px 0;
+  justify-content: center;
+}
