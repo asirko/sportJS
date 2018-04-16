@@ -3,11 +3,11 @@ import { Headers, Http, RequestOptions, RequestOptionsArgs, Response } from '@an
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/of';
 
 import { UserService } from './user.service';
+import { mergeMap } from 'rxjs/operators';
+import { empty } from 'rxjs/observable/empty';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class HttpAuthService {
@@ -33,29 +33,31 @@ export class HttpAuthService {
               private userService: UserService) { }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.findAccessToken()
-      .mergeMap(token => this.http.get(url, HttpAuthService.addTokenToHeaders(token, options)));
+    return this.findAccessToken().pipe(
+      mergeMap(token => this.http.get(url, HttpAuthService.addTokenToHeaders(token, options)))
+    );
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.findAccessToken()
-      .mergeMap(token => this.http.post(url, body,
-                                        HttpAuthService.addApplicationJsonContent(
-                                          HttpAuthService.addTokenToHeaders(token, options))));
+    return this.findAccessToken().pipe(
+      mergeMap(token => this.http.post(url, body,
+        HttpAuthService.addApplicationJsonContent(HttpAuthService.addTokenToHeaders(token, options))))
+    );
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.findAccessToken()
-      .mergeMap(token => this.http.delete(url, HttpAuthService.addTokenToHeaders(token, options)));
+    return this.findAccessToken().pipe(
+      mergeMap(token => this.http.delete(url, HttpAuthService.addTokenToHeaders(token, options)))
+    );
   }
 
   private findAccessToken(): Observable<any> {
     const token = this.userService.getToken();
     if (!token) {
       this.router.navigate(['/home']);
-      return Observable.empty();
+      return empty();
     }
-    return Observable.of(token);
+    return of(token);
   }
 
 }

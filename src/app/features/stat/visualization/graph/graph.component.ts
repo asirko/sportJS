@@ -1,15 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
-import {ResizeGraphService} from '../resize-graph.service';
-import {Subscription} from 'rxjs/Subscription';
-import 'rxjs/add/observable/combineLatest';
-import {Observable} from "rxjs/Observable";
-import {RecordStoreService} from "../../record-store.service";
+import { ResizeGraphService } from '../resize-graph.service';
+import { RecordStoreService } from '../../record-store.service';
+import { Subscription } from 'rxjs/Subscription';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 @Component({
   selector: 'sp-graph',
@@ -32,14 +31,13 @@ export class GraphComponent implements OnInit, OnDestroy {
               private recordStoreService: RecordStoreService) {}
 
   ngOnInit() {
-    this.sub = Observable.combineLatest(
+    this.sub = combineLatest(
       this.resizeGraphService.getWidth$(),
       this.recordStoreService.getSelectedRecord$(),
-      (width, record) => { return {width, record} }
-    ).subscribe(widthRecord => {
-      this.width = widthRecord.width;
-      if (widthRecord.record) {
-        this.drawGraph(widthRecord.record.heartBeats);
+    ).subscribe(([width, record]) => {
+      this.width = width;
+      if (record) {
+        this.drawGraph(record.heartBeats);
       }
     });
   }

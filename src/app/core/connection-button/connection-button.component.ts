@@ -1,8 +1,9 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
-import {Router, NavigationEnd} from '@angular/router';
-import {UserService} from '../security/user.service';
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/combineLatest";
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { UserService } from '../security/user.service';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'sp-connection-button',
@@ -16,17 +17,17 @@ export class ConnectionButtonComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit() {
-    const newRoute = this.router.events.filter(event => event instanceof NavigationEnd);
+    const newRoute = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    );
     const user$ = this.userService.getUser$();
-    Observable
-      .combineLatest(newRoute, user$, (event, user) => user)
-      .subscribe(user => {
-        if (this.router.url === '/login' || user) {
-          this.elementRef.nativeElement.style.display = 'none';
-        } else {
-          this.elementRef.nativeElement.style.display = 'flex';
-        }
-      });
+    combineLatest(newRoute, user$, (event, user) => user).subscribe(user => {
+      if (this.router.url === '/login' || user) {
+        this.elementRef.nativeElement.style.display = 'none';
+      } else {
+        this.elementRef.nativeElement.style.display = 'flex';
+      }
+    });
   }
 
 }

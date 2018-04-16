@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 
 import { Program } from './program';
 import { HttpAuthService } from '../../core/security/http-auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ProgramService {
@@ -13,13 +12,15 @@ export class ProgramService {
   constructor(private http: HttpAuthService) { }
 
   findAll(): Observable<Program[]> {
-    return this.http.get(`/api/programs`)
-      .map(res => res.json());
+    return this.http.get(`/api/programs`).pipe(
+      map(res => res.json())
+    );
   }
 
   findAllPlusEmpty(): Observable<Program[]> {
-    return this.findAll()
-      .map(list => [...list, {name: 'Autre'}]);
+    return this.findAll().pipe(
+      map(list => [...list, {name: 'Autre'}])
+    );
   }
 
   updateProgram(index: number, program: Program): void {
@@ -38,7 +39,8 @@ export class ProgramService {
   }
 
   getProgramByIndex(index: number): Observable<any> {
-    return this.http.get(`/api/programs/${index}`)
-      .map(res => res.json());
+    return this.http.get(`/api/programs/${index}`).pipe(
+      map(res => res.json())
+    );
   }
 }

@@ -3,10 +3,9 @@ import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 
 import { User } from './user';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -20,19 +19,18 @@ export class UserService {
   }
 
   login(user: User): Observable<void> {
-    return this.http.post('/api/auth', { username: user.username, password: user.password })
-      .map(res => {
-        // login successful if there's a jwt token in the response
-        const token = res.json() && res.json().token;
-        if (token) {
-          // set token property
-          this.token = token;
-          // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('token', token);
-          this.user = { username: user.username, password: null };
-          this.user$.next(this.user);
-        }
-      });
+    return this.http.post('/api/auth', { username: user.username, password: user.password }).pipe(map(res => {
+      // login successful if there's a jwt token in the response
+      const token = res.json() && res.json().token;
+      if (token) {
+        // set token property
+        this.token = token;
+        // store username and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('token', token);
+        this.user = { username: user.username, password: null };
+        this.user$.next(this.user);
+      }
+    }));
   }
 
   logout(): void {
@@ -51,7 +49,7 @@ export class UserService {
     }
 
     this.http.post('/api/user', { token: this.token })
-      .map(res => res.json())
+      .pipe(map(res => res.json()))
       .subscribe(
         user => {
           this.user = user;

@@ -1,9 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/mergeMap';
-import {ResizeGraphService} from "./visualization/resize-graph.service";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ResizeGraphService } from './visualization/resize-graph.service';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { mergeMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'sp-stat',
@@ -22,11 +20,12 @@ export class StatComponent implements OnInit {
 
   ngOnInit() {
 
-    const mouseDown = Observable.fromEvent(this.separator.nativeElement, 'mousedown');
-    const mouseMove = Observable.fromEvent(document, 'mousemove');
-    const mouseUp = Observable.fromEvent(document, 'mouseup');
+    const mouseDown = fromEvent(this.separator.nativeElement, 'mousedown');
+    const mouseMove = fromEvent(document, 'mousemove');
+    const mouseUp = fromEvent(document, 'mouseup');
+    const listenMoveUntilUp = mouseMove.pipe(takeUntil(mouseUp));
 
-    mouseDown.mergeMap(() => mouseMove.takeUntil(mouseUp))
+    mouseDown.pipe(mergeMap(() => listenMoveUntilUp))
       .subscribe((e: MouseEvent) => {
         const newWidths = this.getBlocksWidth(e.x);
         this.resizeGraphService.setWidth(newWidths.rightWidth);

@@ -1,5 +1,5 @@
-import {HeartBeat} from "./heart-beat";
-import {ExerciceCategory} from "../program/exercice";
+import { HeartBeat } from './heart-beat';
+import { ExerciceCategory } from '../program/exercice';
 
 export class Record {
   // timestamp of beginning of the record
