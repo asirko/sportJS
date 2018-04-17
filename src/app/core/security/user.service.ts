@@ -4,12 +4,20 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { User } from './user';
-import { tap } from 'rxjs/operators';
+import { catchError, filter, finalize, share, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class UserService {
-  user$ = new BehaviorSubject<User>(undefined);
+
+  private user$ = new BehaviorSubject<User>(undefined);
+
+  private refreshConnected = this.http.get<User>('/api/users/refreshConnected').pipe(
+    catchError(() => of(null)),
+    tap(user => this.user$.next(user)),
+    share()
+  );
 
   constructor(private http: HttpClient) {}
 
@@ -19,22 +27,19 @@ export class UserService {
   }
 
   logout(): void {
-    this.user$.next(null);
-    localStorage.removeItem('token');
-  }
-
-  private getUser(): void {
-    this.http.get<User>('/api/users/refreshConnected').subscribe(
-      user => this.user$.next(user),
-      () => this.user$.next(null)
-    );
+    this.http.get('/api/users/logout').pipe(finalize(() => {
+      this.user$.next(null);
+      localStorage.removeItem('token');
+    })).subscribe();
   }
 
   getUser$(): Observable<User> {
     if (this.user$.getValue() ===  undefined) {
-      this.getUser();
+      this.refreshConnected.subscribe();
     }
-    return this.user$.asObservable();
+    return this.user$.asObservable().pipe(
+      filter(u => u !== undefined)
+    );
   }
 
   isLoggedIn(): boolean {
