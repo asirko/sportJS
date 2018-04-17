@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.userService.login(this.loginForm.value)
+    this.userService.login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(
         () => this.router.navigate(['/home']),
         () => this.loginFail = true

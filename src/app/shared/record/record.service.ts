@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpAuthService } from '../../core/security/http-auth.service';
 import { Record } from './record';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class RecordService {
 
-  constructor(private http: HttpAuthService) { }
+  constructor(private http: HttpClient) { }
 
   findAll(): Observable<Record[]> {
-    return this.http.get(`/api/exercices`).pipe(
-      map(res => res.json())
-    );
+    return this.http.get<Record[]>(`/api/exercices`);
   }
 
 }

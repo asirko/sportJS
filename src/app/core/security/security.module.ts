@@ -3,7 +3,6 @@ import { AuthGuard } from './auth.guard';
 import { UserService } from './user.service';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../../shared/shared.module';
-import { HttpAuthService } from './http-auth.service';
 
 @NgModule({
   imports: [
@@ -11,8 +10,7 @@ import { HttpAuthService } from './http-auth.service';
   ],
   providers: [
     AuthGuard,
-    UserService,
-    HttpAuthService
+    UserService
   ],
   declarations: [LoginComponent]
 })

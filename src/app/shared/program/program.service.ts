@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
-import { Program } from './program';
-import { HttpAuthService } from '../../core/security/http-auth.service';
 import { map } from 'rxjs/operators';
+import { Program } from './program';
 
 @Injectable()
 export class ProgramService {
 
-  constructor(private http: HttpAuthService) { }
+  constructor(private http: HttpClient) { }
 
   findAll(): Observable<Program[]> {
-    return this.http.get(`/api/programs`).pipe(
-      map(res => res.json())
-    );
+    return this.http.get<Program[]>(`/api/programs`);
   }
 
   findAllPlusEmpty(): Observable<Program[]> {
@@ -25,22 +21,20 @@ export class ProgramService {
 
   updateProgram(index: number, program: Program): void {
     this.http.post(`/api/programs/${index}`, program)
-      .subscribe(() => {});
+      .subscribe();
   }
 
   addProgram(program: Program): void {
     this.http.post(`/api/programs`, program)
-      .subscribe(() => {});
+      .subscribe();
   }
 
   deleteProgram(index: number): void {
     this.http.delete(`/api/programs/${index}`)
-      .subscribe(() => {});
+      .subscribe();
   }
 
-  getProgramByIndex(index: number): Observable<any> {
-    return this.http.get(`/api/programs/${index}`).pipe(
-      map(res => res.json())
-    );
+  getProgramByIndex(index: number): Observable<Program> {
+    return this.http.get<Program>(`/api/programs/${index}`);
   }
 }

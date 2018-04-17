@@ -1,80 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { User } from './user';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
-  token: string;
-  user: User;
   user$ = new BehaviorSubject<User>(undefined);
 
-  constructor(private http: Http) {
-    // set token if saved in local storage
-    this.token = localStorage.getItem('token');
-  }
+  constructor(private http: HttpClient) {}
 
-  login(user: User): Observable<void> {
-    return this.http.post('/api/auth', { username: user.username, password: user.password }).pipe(map(res => {
-      // login successful if there's a jwt token in the response
-      const token = res.json() && res.json().token;
-      if (token) {
-        // set token property
-        this.token = token;
-        // store username and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('token', token);
-        this.user = { username: user.username, password: null };
-        this.user$.next(this.user);
-      }
-    }));
+  login(login, password): Observable<User> {
+    return this.http.post<User>('/api/users/login', { login, password })
+      .pipe(tap(userReceived => this.user$.next(userReceived)));
   }
 
   logout(): void {
-    // clear token remove user from local storage to log user out
-    this.token = null;
-    this.user = null;
     this.user$.next(null);
     localStorage.removeItem('token');
   }
 
   private getUser(): void {
-    if (!this.token) {
-      this.user$.next(null);
-      this.user = null;
-      return;
-    }
-
-    this.http.post('/api/user', { token: this.token })
-      .pipe(map(res => res.json()))
-      .subscribe(
-        user => {
-          this.user = user;
-          this.user$.next(user);
-        },
-        () => {
-          this.user = null;
-          this.user$.next(null);
-        }
-      );
+    this.http.get<User>('/api/users/refreshConnected').subscribe(
+      user => this.user$.next(user),
+      () => this.user$.next(null)
+    );
   }
 
   getUser$(): Observable<User> {
-    if (this.user ===  undefined) {
+    if (this.user$.getValue() ===  undefined) {
       this.getUser();
     }
     return this.user$.asObservable();
   }
 
-  getToken(): string {
-    return this.token;
-  }
-
   isLoggedIn(): boolean {
-    return !!this.user && !!this.user.username;
+    return !!this.user$.getValue();
   }
 
 }

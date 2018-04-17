@@ -1,4 +1,4 @@
-<div class="header">
+<header>
 
   <menu>
     <menuitem><a [routerLink]="['/home']" routerLinkActive="active">Accueil</a></menuitem>
@@ -8,8 +8,8 @@
   </menu>
 
   <div class="user">
-    <div *ngIf="user$ | async; else notLogged" class="username" (click)="logout()">
-      {{ (user$ | async).username }}
+    <div *ngIf="user$ | async as user; else notLogged" class="username" (click)="logout()">
+      {{ user.login }}
       <i class="fa fa-user" aria-hidden="true"></i>
       <i class="fa fa-sign-out" aria-hidden="true"></i>
     </div>
@@ -17,6 +17,6 @@
       <div class="sp-btn sp-btn-is-inverted" (click)="goToLogin()">Se connecter</div>
     </ng-template>
   </div>
-</div>
+</header>
 
 

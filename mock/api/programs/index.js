@@ -1,10 +1,7 @@
 const express = require('express');
 const controller = require('./programs.controller');
-const requireLogin = require('../auth/auth.middleware').requireLogin;
 
 const router = express.Router();
-
-router.use(requireLogin);
 
 router.get('/', controller.get);
 router.post('/', controller.create);

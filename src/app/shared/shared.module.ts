@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopinComponent } from './popin/popin.component';
@@ -7,11 +7,14 @@ import { ProgramService } from './program/program.service';
 import { RecordService } from './record/record.service';
 import { FilterRecordByCategoryPipe } from './record/filter-record-by-category.pipe';
 import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     PopinComponent,
@@ -22,14 +25,27 @@ import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe
   exports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     PopinComponent,
     AutoFocusDirective,
     FilterRecordByCategoryPipe,
     ParseLineBreakPipe
   ],
-  providers: [
-    ProgramService,
-    RecordService
-  ]
+  providers: [ ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: TokenInterceptorService,
+          multi: true
+        },
+        ProgramService,
+        RecordService
+      ]
+    };
+  }
+}

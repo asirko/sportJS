@@ -12,10 +12,7 @@ import { SecurityModule } from './security/security.module';
 
 @NgModule({
   imports: [
-    SharedModule,
-    // todo use httpClient instead of deprecated http
-    // todo use httpInterceptors instead of a custom http service
-    HttpModule,
+    SharedModule.forRoot(),
     BrowserModule,
     CoreRoutingModule,
     SecurityModule
