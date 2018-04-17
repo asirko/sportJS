@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../security/user.service';
-import { User } from "../security/user";
+import { User } from '../security/user';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.userService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'])
+      .then(() => this.userService.logout());
   }
 
 }
