@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../security/user.service';
-import { User } from '../security/user';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../../shared/user';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'sp-header',

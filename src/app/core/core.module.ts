@@ -5,17 +5,15 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { UnknownComponent } from './unknown/unknown.component';
 import { HeaderComponent } from './header/header.component';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ConnectionButtonComponent } from './connection-button/connection-button.component';
-import { SecurityModule } from './security/security.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
     SharedModule.forRoot(),
     BrowserModule,
-    CoreRoutingModule,
-    SecurityModule
+    CoreRoutingModule
   ],
   exports: [
     CoreRoutingModule,
@@ -26,7 +24,8 @@ import { SecurityModule } from './security/security.module';
     HomeComponent,
     UnknownComponent,
     HeaderComponent,
-    ConnectionButtonComponent
+    ConnectionButtonComponent,
+    LoginComponent
   ]
 })
 export class CoreModule { }

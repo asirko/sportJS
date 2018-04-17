@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { UserService } from '../security/user.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { filter } from 'rxjs/operators';
+import { UserService } from '../../shared/user.service';
 
 
 @Component({

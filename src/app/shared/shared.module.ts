@@ -9,6 +9,8 @@ import { FilterRecordByCategoryPipe } from './record/filter-record-by-category.p
 import { ParseLineBreakPipe } from './utils/parseLineBreak/parse-line-break.pipe';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { UserService } from './user.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ export class SharedModule {
           multi: true
         },
         ProgramService,
-        RecordService
+        RecordService,
+        UserService,
+        AuthGuard
       ]
     };
   }
