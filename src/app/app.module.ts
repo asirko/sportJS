@@ -11,9 +11,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    CoreModule
-  ],
+  imports: [CoreModule],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })

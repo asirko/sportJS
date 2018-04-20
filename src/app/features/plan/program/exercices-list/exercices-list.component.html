@@ -20,7 +20,7 @@
       <span *ngIf="exercice.nbRepetion">x</span>
       {{ exercice.nbMouvement }}
     </td>
-    <td [innerHTML]="exercice.comment | parseLineBreak"></td>
+    <td>{{ exercice.comment }}</td>
     <td class="actions">
         <div class="ordering">
           <i class="fa fa-arrow-up" *ngIf="!isFirst; else emptyCell" aria-hidden="true" (click)="moveDown(i)"></i>
