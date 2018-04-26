@@ -1,5 +1,5 @@
 
-<div class="sp-switch">
+<div class="sp-switch"><!-- todo faire fonctionner le switch -->
   <div class="option">Tous</div>
   <div class="option">Cours</div>
   <div class="option">Cardio</div>
@@ -7,8 +7,9 @@
 </div>
 
 <div class="records">
-  <div class="l-card record" (click)="selectRecord(record)" [ngClass]="{'selected': record === selectedRecord}"
-       *ngFor="let record of records$ | async">
+  <!-- todo utiliser le pipe pour filtrer les record -->
+  <div class="l-card record" *ngFor="let record of records$ | async"
+       (click)="selectRecord(record)" [ngClass]="{'selected': record === selectedRecord}">
 
     <i class="fi flaticon-people record-icon" aria-hidden="true"
        [ngClass]="{'flaticon-people': record.category === 'LESSON',
