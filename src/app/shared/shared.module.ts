@@ -1,8 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PopinComponent } from './popin/popin.component';
-import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
 import { ProgramService } from './program/program.service';
 import { RecordService } from './record/record.service';
 import { FilterRecordByCategoryPipe } from './record/filter-record-by-category.pipe';
@@ -19,8 +17,6 @@ import { AuthGuard } from './auth.guard';
     HttpClientModule
   ],
   declarations: [
-    PopinComponent,
-    AutoFocusDirective,
     FilterRecordByCategoryPipe,
     ParseLineBreakPipe
   ],
@@ -28,8 +24,6 @@ import { AuthGuard } from './auth.guard';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    PopinComponent,
-    AutoFocusDirective,
     FilterRecordByCategoryPipe,
     ParseLineBreakPipe
   ],
