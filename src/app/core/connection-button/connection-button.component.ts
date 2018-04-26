@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { combineLatest } from 'rxjs/observable/combineLatest';
-import { filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import { UserService } from '../../shared/user.service';
+import { User } from '../../shared/user';
 
 
 @Component({
@@ -17,17 +18,25 @@ export class ConnectionButtonComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit() {
-    const newRoute = this.router.events.pipe(
+    const newRoute$ = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     );
     const user$ = this.userService.getUser$();
-    combineLatest(newRoute, user$, (event, user) => user).subscribe(user => {
-      if (this.router.url === '/login' || user) {
-        this.elementRef.nativeElement.style.display = 'none';
-      } else {
-        this.elementRef.nativeElement.style.display = 'flex';
-      }
-    });
+
+    // as layout is routing he is initiated after the first navigationEnd got fired
+    user$.pipe(first())
+      .subscribe(user => this.manageButtonDisplay(user));
+    // then each rout event and each user modification must be checked
+    combineLatest(newRoute$, user$)
+      .subscribe(([navEnd, user]) => this.manageButtonDisplay(user));
+  }
+
+  private manageButtonDisplay(user: User): void {
+    if (this.router.url === '/login' || user) {
+      this.elementRef.nativeElement.style.display = 'none';
+    } else {
+      this.elementRef.nativeElement.style.display = 'flex';
+    }
   }
 
 }

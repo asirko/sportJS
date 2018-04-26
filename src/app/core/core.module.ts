@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ConnectionButtonComponent } from './connection-button/connection-button.component';
 import { LoginComponent } from './login/login.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     UnknownComponent,
     HeaderComponent,
     ConnectionButtonComponent,
-    LoginComponent
+    LoginComponent,
+    LayoutComponent
   ]
 })
 export class CoreModule { }
