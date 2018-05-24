@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecordStoreService } from '../../record-store.service';
 import { Record } from '../../../../shared/record/record';
-import { Observable } from 'rxjs/Observable';
-import { from } from 'rxjs/observable/from';
+import { from, Observable } from 'rxjs';
 import { filter, last, map, max, mergeMap, min, reduce } from 'rxjs/operators';
 
 @Component({

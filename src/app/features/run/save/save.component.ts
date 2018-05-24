@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { Program } from '../../../shared/program/program';
 import { ProgramService } from '../../../shared/program/program.service';
