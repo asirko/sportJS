@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  BehaviorSubject ,  of } from 'rxjs';
 
 import { User } from './user';
 import { catchError, filter, finalize, share, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class UserService {

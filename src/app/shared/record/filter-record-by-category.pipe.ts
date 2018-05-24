@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Record} from "./record";
+import { Record } from './record';
 
 @Pipe({
   name: 'filterRecordByCategory'

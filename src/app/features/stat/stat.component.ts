@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ResizeGraphService } from './visualization/resize-graph.service';
-import { fromEvent } from 'rxjs/observable/fromEvent';
+import { fromEvent } from 'rxjs';
 import { mergeMap, takeUntil } from 'rxjs/operators';
 
 @Component({

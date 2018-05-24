@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Record} from "../../shared/record/record";
-import {Observable} from "rxjs/Observable";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Record } from '../../shared/record/record';
 
 @Injectable()
 export class RecordStoreService {

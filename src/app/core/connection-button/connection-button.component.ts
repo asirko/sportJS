@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { combineLatest } from 'rxjs/observable/combineLatest';
+import { combineLatest } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 import { UserService } from '../../shared/user.service';
 import { User } from '../../shared/user';
