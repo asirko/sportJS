@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  BehaviorSubject ,  of } from 'rxjs';
 
 import { User } from './user';
 import { catchError, filter, finalize, share, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs/observable/of';
+import { LOCAL_TOKEN } from './token-interceptor.service';
 
 @Injectable()
 export class UserService {
@@ -29,7 +28,7 @@ export class UserService {
   logout(): void {
     this.http.get('/api/users/logout').pipe(finalize(() => {
       this.user$.next(null);
-      localStorage.removeItem('token');
+      localStorage.removeItem(LOCAL_TOKEN);
     })).subscribe();
   }
 
