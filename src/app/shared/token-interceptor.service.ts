@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { of } from 'rxjs/observable/of';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 export const LOCAL_TOKEN = 'localToken';
 
@@ -39,12 +37,13 @@ export class TokenInterceptorService implements HttpInterceptor {
     }
   }
 
-  handleErrors(err: HttpErrorResponse) {
+  handleErrors(err: HttpErrorResponse): Observable<HttpEvent<any>> {
     if (err.status === 401) {
       this.router.navigate(['/']);
       return of(new HttpResponse({body: null, status: 200}));
     }
-    return ErrorObservable.create(err);
+    // todo vérifier que la 401 est bien catchée
+    return Observable.create(err);
   }
 
 }

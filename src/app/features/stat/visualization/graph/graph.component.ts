@@ -7,8 +7,7 @@ import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import { ResizeGraphService } from '../resize-graph.service';
 import { RecordStoreService } from '../../record-store.service';
-import { Subscription } from 'rxjs/Subscription';
-import { combineLatest } from 'rxjs/observable/combineLatest';
+import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
   selector: 'sp-graph',
