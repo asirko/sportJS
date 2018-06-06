@@ -1,7 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ResizeGraphService } from './visualization/resize-graph.service';
-import { fromEvent } from 'rxjs';
-import { mergeMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'sp-stat',
@@ -19,22 +17,24 @@ export class StatComponent implements OnInit {
               private resizeGraphService: ResizeGraphService) { }
 
   ngOnInit() {
+    this.initGraphWidth();
 
-    const mouseDown = fromEvent(this.separator.nativeElement, 'mousedown');
-    const mouseMove = fromEvent(document, 'mousemove');
-    const mouseUp = fromEvent(document, 'mouseup');
-    const listenMoveUntilUp = mouseMove.pipe(takeUntil(mouseUp));
+    // todo redimensionner les 2 blocs dynamiquement
+    // fromEvent de rxjs peut être utile
+    // il prend 2 paramètres: l'élément du DOM observé, et l'événement observé
+    // il renvoit un observable de ses événements
+  }
 
-    mouseDown.pipe(mergeMap(() => listenMoveUntilUp))
-      .subscribe((e: MouseEvent) => {
-        const newWidths = this.getBlocksWidth(e.x);
-        this.resizeGraphService.setWidth(newWidths.rightWidth);
-        this.leftBlock.nativeElement.setAttribute('style', `width:${newWidths.leftWidth}px`);
-        this.rightBlock.nativeElement.setAttribute('style', `width:${newWidths.rightWidth}px`);
-      });
-
+  private initGraphWidth(): void {
     const blocksWidth = this.getBlocksWidth(this.separator.nativeElement.getBoundingClientRect().left + 2);
     this.resizeGraphService.setWidth(blocksWidth.rightWidth);
+  }
+
+  private resizeFromEvent(e: MouseEvent): void {
+    const newWidths = this.getBlocksWidth(e.x);
+    this.resizeGraphService.setWidth(newWidths.rightWidth);
+    this.leftBlock.nativeElement.setAttribute('style', `width:${newWidths.leftWidth}px`);
+    this.rightBlock.nativeElement.setAttribute('style', `width:${newWidths.rightWidth}px`);
   }
 
   private getBlocksWidth(mouseX: number): {leftWidth, rightWidth} {

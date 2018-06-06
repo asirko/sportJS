@@ -1,5 +1,5 @@
-
-<div *ngIf="(record$ | async); else noRecord">
+<!-- todo n'afficher la synthes que s'il y a un record de selectionné -->
+<div *ngIf="false; else noRecord">
   <div class="title">
     {{ getType$() | async }} ({{ getDuration$() | async }})
   </div>
